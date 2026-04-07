@@ -73,6 +73,9 @@
     </div>
 
     <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
         let deferredPrompt;
         const banner = document.getElementById('install-banner');
         const installBtn = document.getElementById('install-button');
