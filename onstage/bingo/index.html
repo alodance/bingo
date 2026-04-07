@@ -179,7 +179,25 @@
 </script>
 
 <body>
-  <a href="/onstage/index.html"><p class="border text-center border-blue-500 m-2 p-3 text-blue-500 hover:text-blue-400 cursor-pointer">Retour</p></a>
+<a href="/onstage/index.html" 
+   style="display: table; 
+          margin-left: auto; 
+          margin-right: auto; 
+          margin-top: 2rem;
+          margin-bottom: 2rem;
+          border: 1px solid #3b82f6; 
+          padding: 0.6rem 2rem; 
+          text-align: center; 
+          color: #fff; 
+          text-decoration: none; 
+          font-weight: bold; 
+          text-transform: uppercase; 
+          font-size: 0.8rem; 
+          letter-spacing: 0.05em;"
+   onmouseover="this.style.background='rgba(59, 130, 246, 0.1)'"
+   onmouseout="this.style.background='transparent'">
+    Retour
+</a>
 
   <div id="victoryOverlay" class="victory-overlay">
     <div class="sunburst"></div>
@@ -201,13 +219,36 @@
 
   <script>
     const songsBase = [
-      "Yeah!", "Jump", "Creep", "Let's Get Loud", "Little Party", "Play That Sax", "Feeling Good", 
-      "Girls Just Wanna Have Fun", "Candyman", "River Deep", "Hit The Road Jack", "Everybody Wants To Rule", 
-      "Dem Beats", "Clap Snap", "Dangerous", "That's Life", "Level Up", "Stupid Cupid", "Flowers", 
-      "Vampire", "Cruel Summer", "Dance The Night", "Training Season", "Houdini", "Texas Hold 'Em", 
-      "greedy", "Lose Control", "Paint The Town Red", "Strut", "Manicure", "Control", "Black & Gold", 
-      "Sway", "Circus", "Seven Nation Army", "Espresso", "Birds of a Feather", "Hot to Go!", 
-      "Pink Pony Club", "Feather", "Good Luck, Babe!", "Lunch", "Not Like Us", "Espresso", "Pink Venom"
+      "Jump",
+    "Let's get loud",
+    "Little party never killed nobody",
+    "Play that Sax",
+    "Feeling Good",
+    "Yeah!",
+    "Girls just wanna have fun",
+    "Candyman",
+    "River Deep, Mountain High",
+    "Everybody wants to rule the world",
+    "Hit the Road Jack",
+    "Dem beats",
+    "Clap Snap",
+    "Dangerous",
+    "When the party is over",
+    "Daylight",
+    "Nails Hair Hips Heels",
+    "That's life",
+    "Jail House Rock",
+    "Way down we go",
+    "Black & Gold",
+    "Who Run the World",
+    "Rockin' Robin",
+    "All that Jazz",
+    "Run Boy Run",
+    "Lose Control",
+    "Level up",
+    "Stupid, Cupid",
+    "My way",
+    "Cold Hearted Snake"
     ];
 
     let cells = [];
