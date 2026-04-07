@@ -1,6 +1,6 @@
 {
-  "name": "EDRW OnStage",
-  "short_name": "OnStage",
+  "name": "Compétitions EDRW",
+  "short_name": "Compétitions EDRW",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#0f172a",
