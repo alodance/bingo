@@ -33,7 +33,32 @@
 </script>
 
 <body class="bg-[#0f172a] text-slate-200 min-h-screen flex items-center justify-center p-6">
-    <div id="install-banner" class="hidden fixed bottom-4 left-4 right-4 bg-blue-600 text-white p-4 rounded-2xl shadow-2xl flex items-center justify-between z-50">
+
+    <div class="max-w-md w-full">
+        <header class="text-center mb-12">
+            <img src="/images/logo-edrw.png" alt="Logo EDRW" class="mx-auto w-32 mb-6">
+            <h1 class="text-4xl font-black text-white tracking-tighter uppercase">GUIDE COMPÉTITIF</h1>
+            <p class="text-slate-400 mt-2">Votre compagnon pour vous accompagner lors des compétitions EDRW</p>
+            <p class="text-slate-400 mt-2">Sélectionnez une compétition pour débuter</p>
+        </header>
+
+        <div class="space-y-4">
+            <a href="onstage/index.html"
+                class="group block p-6 bg-slate-900 border border-slate-800 rounded-2xl hover:border-blue-500 hover:bg-slate-800/50 transition-all shadow-xl">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-xl font-bold text-white group-hover:text-blue-400">OnStage</h2>
+                        <p class="text-sm text-slate-500 tracking-wide uppercase font-semibold">9 au 12 avril
+                            2026<br>Algonquin Common Theatre, Ottawa</p>
+                    </div>
+                    <span class="text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+                </div>
+            </a>
+
+
+        </div>
+    </div>
+<div id="install-banner" class="hidden fixed bottom-4 left-4 right-4 bg-blue-600 text-white p-4 rounded-2xl shadow-2xl flex items-center justify-between z-50">
         <div class="flex items-center gap-3">
             <div class="bg-white/20 p-2 rounded-lg text-xl">📲</div>
             <div>
@@ -94,32 +119,6 @@
             localStorage.setItem('install-dismissed', 'true');
         }
     </script>
-
-    <div class="max-w-md w-full">
-        <header class="text-center mb-12">
-            <img src="/images/logo-edrw.png" alt="Logo EDRW" class="mx-auto w-32 mb-6">
-            <h1 class="text-4xl font-black text-white tracking-tighter uppercase">GUIDE COMPÉTITIF</h1>
-            <p class="text-slate-400 mt-2">Votre compagnon pour vous accompagner lors des compétitions EDRW</p>
-            <p class="text-slate-400 mt-2">Sélectionnez une compétition pour débuter</p>
-        </header>
-
-        <div class="space-y-4">
-            <a href="onstage/index.html"
-                class="group block p-6 bg-slate-900 border border-slate-800 rounded-2xl hover:border-blue-500 hover:bg-slate-800/50 transition-all shadow-xl">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <h2 class="text-xl font-bold text-white group-hover:text-blue-400">OnStage</h2>
-                        <p class="text-sm text-slate-500 tracking-wide uppercase font-semibold">9 au 12 avril
-                            2026<br>Algonquin Common Theatre, Ottawa</p>
-                    </div>
-                    <span class="text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-                </div>
-            </a>
-
-
-        </div>
-    </div>
-
 </body>
 
 </html>
