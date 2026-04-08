@@ -78,6 +78,13 @@
             <p class="text-slate-400 mt-2 text-sm italic">Photo Rally</p>
         </header>
 
+        <div class="flex justify-center w-full px-6 mb-8">
+            <button onclick="openModal()" 
+                class="w-full max-w-xs py-3 px-6 bg-slate-900 border border-slate-700 rounded-xl text-slate-400 font-bold text-xs tracking-[0.2em] uppercase hover:border-blue-500 hover:text-white hover:bg-slate-800 transition-all duration-300 shadow-lg active:scale-95">
+                Règlements / Rules
+            </button>
+        </div>
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10" id="user-info-section">
             <div>
                 <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Nom / Name</label>
@@ -215,8 +222,70 @@
         }
 
         init();
-    </script>
 
+        function openModal() {
+            const modal = document.getElementById('rules-modal');
+            modal.classList.remove('hidden');
+            // Empêche le scroll du body en arrière-plan
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('rules-modal');
+            modal.classList.add('hidden');
+            // Réactive le scroll du body
+            document.body.style.overflow = 'auto';
+        }
+
+        // Optionnel: Fermer le modal si on clique sur l'overlay noir
+        window.onclick = function(event) {
+            const modal = document.getElementById('rules-modal');
+            if (event.target == modal.querySelector('.absolute')) {
+                closeModal();
+            }
+        }
+    </script>
+<div id="rules-modal" class="hidden fixed inset-0 z-[200] flex items-center justify-center p-4">
+    <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"></div>
+    
+    <div class="relative bg-slate-900 border border-slate-800 w-full max-w-lg max-h-[80vh] rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in zoom-in duration-300">
+        
+        <div class="p-6 border-b border-slate-800 flex justify-between items-center">
+            <h2 class="text-xl font-black text-white uppercase tracking-tighter">Règlements / Rules</h2>
+            <button onclick="closeModal()" class="text-slate-400 hover:text-white text-2xl">&times;</button>
+        </div>
+
+        <div class="p-6 overflow-y-auto text-sm leading-relaxed text-slate-300 space-y-8">
+            <section>
+                <h3 class="text-blue-400 font-bold mb-3 uppercase tracking-widest text-xs">Français</h3>
+                <ul class="list-disc ml-5 space-y-3">
+                    <li>Ceci est un jeu pour le plaisir et occuper les temps morts pendant la compétition.</li>
+                    <li><strong>En aucun temps</strong> une photo ne peut être prise pendant qu'il y a une danse sur la scène par risque de disqualification. Les photos dans la salle doivent être prises pendant les pauses/awards.</li>
+                    <li>AUCUNE photo d'une personne ne peut être prise à son insu/sans son consentement. Soyez respectueux des autres en tout temps.</li>
+                </ul>
+                <p class="mt-4 font-bold text-center text-white italic">Amusez-vous! Bon rallye!</p>
+            </section>
+
+            <hr class="border-slate-800">
+
+            <section>
+                <h3 class="text-blue-400 font-bold mb-3 uppercase tracking-widest text-xs">English</h3>
+                <ul class="list-disc ml-5 space-y-3">
+                    <li>This game is for fun and to keep you busy during downtime at the competition.</li>
+                    <li><strong>Under no circumstances</strong> may a photo be taken while a dance is performing on stage; doing so risks disqualification. Photos in the auditorium must only be taken during breaks or awards.</li>
+                    <li>NO photo of a person may be taken without their knowledge or consent. Be respectful of others at all times.</li>
+                </ul>
+                <p class="mt-4 font-bold text-center text-white italic">Have fun and good luck with the hunt!</p>
+            </section>
+        </div>
+
+        <div class="p-6 border-t border-slate-800 bg-slate-900/50">
+            <button onclick="closeModal()" class="w-full py-4 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-xl transition-colors uppercase tracking-widest text-xs">
+                Fermer / Close
+            </button>
+        </div>
+    </div>
+</div>
 </body>
 
 </html>
