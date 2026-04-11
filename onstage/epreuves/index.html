@@ -6,28 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDRW Photo Rally</title>
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-    <link rel="apple-touch-icon" sizes="57x57" href="/images/appicon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/images/appicon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/images/appicon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/images/appicon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/images/appicon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/images/appicon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/images/appicon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/images/appicon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/appicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/images/appicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/appicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="/images/appicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/images/appicon/favicon-16x16.png">
-
     <style>
-        /* Style pour les cartes complétées en mode sombre */
         .completed {
             @apply opacity-60 bg-emerald-900/20 border-emerald-500/50 scale-[0.98];
             transition: all 0.3s ease;
         }
 
-        /* Spinner adapté au fond foncé */
         .spinner {
             border: 3px solid rgba(255, 255, 255, .1);
             border-top: 3px solid #60a5fa;
@@ -38,65 +22,50 @@
         }
 
         @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
-        /* Correction pour l'input file sur mobile */
-        input::file-selector-button {
-            display: none;
-        }
+        input::file-selector-button { display: none; }
     </style>
     <script src="/onstage/onstage-core.js"></script>
 </head>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-P833EJRBMX"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'G-P833EJRBMX');
-</script>
-
 <body class="bg-[#0f172a] text-slate-200 p-4 md:p-8 font-sans">
-<div id="next-chore-bar" class="hidden fixed bottom-0 left-0 right-0 bg-blue-600 border-t border-blue-400 shadow-[0_-10px_20px_rgba(0,0,0,0.5)] z-[100] p-3 animate-in fade-in slide-in-from-bottom-full duration-500">
-        <div class="max-w-4xl mx-auto flex items-center justify-between">
-            <div class="flex items-center gap-4">
-                <div class="bg-white/20 p-2 rounded-lg animate-pulse">
-                    <span class="text-xl">💃</span>
-                </div>
-                <div class="overflow-hidden">
-                    <p class="text-[10px] font-black uppercase tracking-tighter text-white">Prochain passage à <span id="next-time">--:--</span></p>
-                    <h4 id="next-title" class="text-sm font-bold text-white truncate max-w-[200px] md:max-w-md">Chargement...</h4>
-                </div>
+    <div id="next-chore-bar" class="hidden fixed bottom-0 left-0 right-0 bg-blue-600 border-t border-blue-400 shadow-[0_-15px_30px_rgba(0,0,0,0.5)] z-[100] px-4 pt-3 pb-[calc(12px+env(safe-area-inset-bottom))] animate-in fade-in slide-in-from-bottom-full duration-500">
+    <div class="max-w-md mx-auto flex items-center justify-between gap-3">
+        <div class="flex items-center gap-3 min-w-0"> <div class="bg-white/20 p-2 rounded-lg shrink-0">
+                <span class="text-xl">💃</span>
             </div>
-            <div class="text-right ml-4">
-                <span id="next-countdown" class="bg-black/20 px-3 py-1 rounded-full text-[11px] font-bold text-white whitespace-nowrap">-- min</span>
+            <div class="min-w-0">
+                <p class="text-[10px] font-black uppercase tracking-tighter text-blue-100 leading-none mb-1">
+                    Prochain passage à <span id="next-time" class="text-white">--:--</span>
+                </p>
+                <h4 id="next-title" class="text-sm font-bold text-white truncate leading-tight">
+                    Chargement...
+                </h4>
             </div>
         </div>
+        <div class="shrink-0">
+            <span id="next-countdown" class="bg-black/20 px-3 py-1.5 rounded-full text-[10px] font-black text-white whitespace-nowrap border border-white/10">
+                -- MIN
+            </span>
+        </div>
     </div>
+</div>
+
     <div class="max-w-3xl mx-auto bg-slate-900/50 rounded-2xl shadow-2xl border border-slate-800 p-6">
         <a href="/onstage/index.html">
-            <p class="border text-center border-blue-500 m-2 p-3 text-blue-500 hover:text-blue-400 cursor-pointer">
-                Retour</p>
+            <p class="border text-center border-blue-500 m-2 p-3 text-blue-500 hover:text-blue-400 cursor-pointer">Retour</p>
         </a>
+        
         <header class="text-center mb-10 border-b border-slate-800 pb-6">
-            <h1 class="text-3xl font-black tracking-tight text-white uppercase">
-                Rallye photos
-            </h1>
+            <h1 class="text-3xl font-black tracking-tight text-white uppercase">Rallye photos</h1>
             <p class="text-slate-400 mt-2 text-sm italic">Photo Rally</p>
         </header>
 
         <div class="flex justify-center w-full px-6 mb-8">
-            <button onclick="openModal()" 
-                class="w-full max-w-xs py-3 px-6 bg-slate-900 border border-slate-700 rounded-xl text-slate-400 font-bold text-xs tracking-[0.2em] uppercase hover:border-blue-500 hover:text-white hover:bg-slate-800 transition-all duration-300 shadow-lg active:scale-95">
+            <button onclick="openModal()" class="w-full max-w-xs py-3 px-6 bg-slate-900 border border-slate-700 rounded-xl text-slate-400 font-bold text-xs tracking-[0.2em] uppercase hover:border-blue-500 hover:text-white transition-all shadow-lg active:scale-95">
                 Règlements / Rules
             </button>
         </div>
@@ -104,21 +73,15 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10" id="user-info-section">
             <div>
                 <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Nom / Name</label>
-                <input type="text" id="userName"
-                    class="w-full bg-slate-800 border border-slate-700 text-white p-3 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-all placeholder:text-slate-600"
-                    placeholder="Nom complet / Full Name">
+                <input type="text" id="userName" class="w-full bg-slate-800 border border-slate-700 text-white p-3 rounded-lg outline-none placeholder:text-slate-600" placeholder="Nom complet / Full Name">
             </div>
             <div>
-                <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Courriel /
-                    Email</label>
-                <input type="email" id="userEmail"
-                    class="w-full bg-slate-800 border border-slate-700 text-white p-3 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-all placeholder:text-slate-600"
-                    placeholder="email@exemple.com">
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Courriel / Email</label>
+                <input type="email" id="userEmail" class="w-full bg-slate-800 border border-slate-700 text-white p-3 rounded-lg outline-none placeholder:text-slate-600" placeholder="email@exemple.com">
             </div>
         </div>
 
-        <div id="questions-container" class="space-y-4">
-        </div>
+        <div id="questions-container" class="space-y-4"></div>
     </div>
 
     <script>
@@ -127,7 +90,7 @@
         const questions = [
             { fr: "Une photo de moi avec un parent EDRW qui n'est pas le mien.", en: "A photo of me with an EDRW parent who is not my own." },
             { fr: "Une photo de moi avec DEUX danseurs qui dansent dans DEUX studios différents qui n'est pas EDRW.", en: "A photo of me with TWO dancers dancing in TWO different studios that are not EDRW." },
-            { fr: "Une photo qui montre que je suis à/dans/sur deux endroits différents en même temps. Sois créatif!", en: "A photo showing that I am in/at/on two different places at the same time. Be creative!" },
+            { fr: "Une photo qui montre que je suis à/dans/sur deux endroits différents en même temps.", en: "A photo showing that I am in/at/on two different places at the same time." },
             { fr: "Une photo de la salle vue de la scène.", en: "A photo of the hall viewed from the stage." },
             { fr: "Une photo de moi, avec un danseur d'un autre studio, qui porte un costume vert.", en: "A photo of me with a dancer from another studio wearing a green costume." },
             { fr: "Une photo de moi devant la scène vide (pendant une pause).", en: "A photo of me in front of the empty stage (during a break)." },
@@ -157,30 +120,35 @@
                 div.className = `p-5 border rounded-xl transition-all duration-300 ${isDone ? 'completed' : 'bg-slate-800/40 border-slate-700'}`;
 
                 div.innerHTML = `
-                <div class="flex flex-col md:flex-row md:items-center justify-between gap-5">
+                <div class="flex flex-col gap-4">
                     <div class="flex-1">
                         <p class="font-bold text-blue-400 leading-tight">${index + 1}. ${q.fr}</p>
                         <p class="text-xs text-slate-500 italic mt-1 uppercase tracking-wide">${q.en}</p>
                     </div>
-                    <div class="flex items-center gap-3">
-                        <div id="status-${index}" class="hidden"><div class="spinner"></div></div>
-                        <input type="file" id="input-${index}" accept="image/*" capture="environment" 
-                               class="hidden" onchange="handleUpload(${index})">
-                        <button id="btn-${index}" onclick="document.getElementById('input-${index}').click()" 
-                                class="px-5 py-2 rounded-lg font-bold text-sm transition-all shadow-lg
-                                ${isDone ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/50' : 'bg-blue-600 hover:bg-blue-500 text-white'}"
-                                ${isDone ? 'disabled' : ''}>
-                            ${isDone ? 'COMPLÉTÉ ✓' : 'PHOTO'}
+                    
+                    <div id="status-${index}" class="hidden flex justify-center py-2"><div class="spinner"></div></div>
+                    
+                    <div id="actions-${index}" class="flex flex-wrap gap-2 ${isDone ? 'hidden' : ''}">
+                        <input type="file" id="cam-${index}" accept="image/*" capture="environment" class="hidden" onchange="handleUpload(${index}, 'cam-${index}')">
+                        <button onclick="document.getElementById('cam-${index}').click()" class="flex-1 min-w-[140px] bg-blue-600 hover:bg-blue-500 text-white py-3 rounded-lg font-bold text-[10px] uppercase tracking-wider shadow-lg">
+                            📸 Prendre photo
+                        </button>
+                        
+                        <input type="file" id="gal-${index}" accept="image/*" class="hidden" onchange="handleUpload(${index}, 'gal-${index}')">
+                        <button onclick="document.getElementById('gal-${index}').click()" class="flex-1 min-w-[140px] bg-slate-700 hover:bg-slate-600 text-white py-3 rounded-lg font-bold text-[10px] uppercase tracking-wider shadow-lg">
+                            📁 Choisir photo
                         </button>
                     </div>
+
+                    ${isDone ? `<div class="text-center py-2 text-emerald-400 font-bold text-sm tracking-widest uppercase">COMPLÉTÉ ✓</div>` : ''}
                 </div>
             `;
                 container.appendChild(div);
             });
         }
 
-        async function handleUpload(index) {
-            const fileInput = document.getElementById(`input-${index}`);
+        async function handleUpload(index, inputId) {
+            const fileInput = document.getElementById(inputId);
             const name = userNameInput.value.trim();
             const email = userEmailInput.value.trim();
 
@@ -196,10 +164,11 @@
             const file = fileInput.files[0];
             if (!file) return;
 
-            const btn = document.getElementById(`btn-${index}`);
-            const status = document.getElementById(`status-${index}`);
-            btn.disabled = true;
-            status.classList.remove('hidden');
+            const actionsDiv = document.getElementById(`actions-${index}`);
+            const statusDiv = document.getElementById(`status-${index}`);
+            
+            actionsDiv.classList.add('hidden');
+            statusDiv.classList.remove('hidden');
 
             const reader = new FileReader();
             reader.onload = async function (e) {
@@ -211,7 +180,7 @@
                         body: JSON.stringify({
                             userName: name,
                             userEmail: email,
-                            fileName: `Q${index + 1}_${name}_${Date.now()}.jpg`,
+                            fileName: `Q${index + 1}_${name.replace(/\s+/g, '_')}_${Date.now()}.jpg`,
                             file: base64File
                         })
                     });
@@ -219,9 +188,9 @@
                 } catch (error) {
                     console.error(error);
                     alert("Erreur lors du téléversement. Réessayez.");
-                    btn.disabled = false;
+                    actionsDiv.classList.remove('hidden');
                 } finally {
-                    status.classList.add('hidden');
+                    statusDiv.classList.add('hidden');
                 }
             };
             reader.readAsDataURL(file);
@@ -230,78 +199,24 @@
         function markAsDone(index) {
             localStorage.setItem(`q_${index}_done`, "true");
             const card = document.getElementById(`card-${index}`);
-            const btn = document.getElementById(`btn-${index}`);
+            card.innerHTML = `
+                <div class="flex flex-col gap-4">
+                    <div class="flex-1">
+                        <p class="font-bold text-blue-400 leading-tight">${index + 1}. ${questions[index].fr}</p>
+                        <p class="text-xs text-slate-500 italic mt-1 uppercase tracking-wide">${questions[index].en}</p>
+                    </div>
+                    <div class="text-center py-2 text-emerald-400 font-bold text-sm tracking-widest uppercase">COMPLÉTÉ ✓</div>
+                </div>
+            `;
             card.classList.add('completed');
-            btn.innerText = "COMPLÉTÉ ✓";
-            btn.className = "px-5 py-2 rounded-lg font-bold text-sm bg-emerald-500/20 text-emerald-400 border border-emerald-500/50 cursor-default";
-            btn.disabled = true;
         }
 
         init();
-
-        function openModal() {
-            const modal = document.getElementById('rules-modal');
-            modal.classList.remove('hidden');
-            // Empêche le scroll du body en arrière-plan
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('rules-modal');
-            modal.classList.add('hidden');
-            // Réactive le scroll du body
-            document.body.style.overflow = 'auto';
-        }
-
-        // Optionnel: Fermer le modal si on clique sur l'overlay noir
-        window.onclick = function(event) {
-            const modal = document.getElementById('rules-modal');
-            if (event.target == modal.querySelector('.absolute')) {
-                closeModal();
-            }
-        }
-    </script>
-<div id="rules-modal" class="hidden fixed inset-0 z-[200] flex items-center justify-center p-4">
-    <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"></div>
-    
-    <div class="relative bg-slate-900 border border-slate-800 w-full max-w-lg max-h-[80vh] rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in zoom-in duration-300">
         
-        <div class="p-6 border-b border-slate-800 flex justify-between items-center">
-            <h2 class="text-xl font-black text-white uppercase tracking-tighter">Règlements / Rules</h2>
-            <button onclick="closeModal()" class="text-slate-400 hover:text-white text-2xl">&times;</button>
-        </div>
+        // --- Fonctions Modal (identiques) ---
+        function openModal() { document.getElementById('rules-modal').classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
+        function closeModal() { document.getElementById('rules-modal').classList.add('hidden'); document.body.style.overflow = 'auto'; }
+    </script>
 
-        <div class="p-6 overflow-y-auto text-sm leading-relaxed text-slate-300 space-y-8">
-            <section>
-                <h3 class="text-blue-400 font-bold mb-3 uppercase tracking-widest text-xs">Français</h3>
-                <ul class="list-disc ml-5 space-y-3">
-                    <li>Ceci est un jeu pour le plaisir et occuper les temps morts pendant la compétition.</li>
-                    <li><strong>En aucun temps</strong> une photo ne peut être prise pendant qu'il y a une danse sur la scène par risque de disqualification. Les photos dans la salle doivent être prises pendant les pauses/awards.</li>
-                    <li>AUCUNE photo d'une personne ne peut être prise à son insu/sans son consentement. Soyez respectueux des autres en tout temps.</li>
-                </ul>
-                <p class="mt-4 font-bold text-center text-white italic">Amusez-vous! Bon rallye!</p>
-            </section>
-
-            <hr class="border-slate-800">
-
-            <section>
-                <h3 class="text-blue-400 font-bold mb-3 uppercase tracking-widest text-xs">English</h3>
-                <ul class="list-disc ml-5 space-y-3">
-                    <li>This game is for fun and to keep you busy during downtime at the competition.</li>
-                    <li><strong>Under no circumstances</strong> may a photo be taken while a dance is performing on stage; doing so risks disqualification. Photos in the auditorium must only be taken during breaks or awards.</li>
-                    <li>NO photo of a person may be taken without their knowledge or consent. Be respectful of others at all times.</li>
-                </ul>
-                <p class="mt-4 font-bold text-center text-white italic">Have fun and good luck with the hunt!</p>
-            </section>
-        </div>
-
-        <div class="p-6 border-t border-slate-800 bg-slate-900/50">
-            <button onclick="closeModal()" class="w-full py-4 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-xl transition-colors uppercase tracking-widest text-xs">
-                Fermer / Close
-            </button>
-        </div>
-    </div>
-</div>
-</body>
-
+    </body>
 </html>
